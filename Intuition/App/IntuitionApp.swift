@@ -11,7 +11,9 @@ import SwiftUI
 struct IntuitionApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                MainMenuView()
+            }
         }
     }
 }
