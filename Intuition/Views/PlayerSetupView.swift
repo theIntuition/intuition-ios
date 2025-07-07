@@ -5,24 +5,22 @@
 //  Created by Thakur, Nikunj on 2025-07-04.
 //
 
-
+import GameKit
 import SwiftUI
 
 struct PlayerSetupView: View {
     @State private var isCreatingMatch = true
 
     var body: some View {
-        VStack(spacing: 20) {
-            Picker("Choose", selection: $isCreatingMatch) {
-                Text("Create Match").tag(true)
-                Text("Join Match").tag(false)
+        NavigationStack {
+            VStack(spacing: 30) {
+                NavigationLink("Create Game") {
+                    CreateGameView()
+                }
+                NavigationLink("Join Game") {
+                    JoinGameView()
+                }
             }
-            .pickerStyle(.segmented)
-
-            Text(isCreatingMatch ? "Create a new multiplayer match." : "Join an existing match.")
-                .padding()
-
-            Spacer()
         }
         .padding()
         .navigationTitle("Player Setup")

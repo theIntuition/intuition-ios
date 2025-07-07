@@ -27,6 +27,11 @@ struct MainMenuView: View {
                 SettingsView()
             }
         }
+        .onAppear {
+            Task {
+                GameKitManager.shared.authenticate()
+            }
+        }
         .padding()
     }
 }
