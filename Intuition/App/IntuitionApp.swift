@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct IntuitionApp: App {
+    init() {
+        GameKitManager.shared.authenticate()
+    }
     var body: some Scene {
         WindowGroup {
             NavigationStack {

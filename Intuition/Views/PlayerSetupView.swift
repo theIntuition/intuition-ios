@@ -22,6 +22,20 @@ struct PlayerSetupView: View {
             Text(isCreatingMatch ? "Create a new multiplayer match." : "Join an existing match.")
                 .padding()
 
+            Button(action: {
+                if isCreatingMatch {
+                    GameKitManager.shared.createMatch()
+                } else {
+                    // Join maatch logi
+                }
+            }) {
+                Text(isCreatingMatch ? "Start Creating Match" : "Start Joining Match")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+
             Spacer()
         }
         .padding()

@@ -25,6 +25,17 @@ class GameState: ObservableObject {
         if let lowestCard = (ownCards + playedCards).min(), card == lowestCard {
             playedCards.append(card)
             ownCards.removeAll { $0 == card }
+            
+            // Send the played card to other players
+            if let match = GameKitManager.shared.match {
+                do {
+                    let dataToSend = try JSONEncoder().encode(card)
+                    try match.sendData(toAllPlayers: dataToSend, with: .reliable)
+                } catch {
+                    print("Failed to send card: \(error.localizedDescription)")
+                }
+            }
+            
             checkLevelCompletion()
         } else {
             loseLife()
